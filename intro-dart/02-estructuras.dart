@@ -9,7 +9,10 @@ void main() {
     'Galleta',
   ]; // Lista de String
 
-  postres.insert(postres.length - 2, 'cheesecake');
+  // * IMPORTANTE: Para que sea el penultimo elemento,
+  // * se debe agregar el valor al final de la lista y
+  // * restar solo un elemento, ya que insert desplaza los elementos
+  postres.insert(postres.length - 1, 'cheesecake');
   print(postres);
 
   numeros.add(10); // agrega un valor al final de la lista
