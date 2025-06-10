@@ -9,9 +9,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //retornar el Widget "Padre"
     return MaterialApp(
+      // la pantalla princial
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
+          // centerTitle: false,
           title: Text(
             'Menu',
             style: TextStyle(
@@ -23,7 +24,41 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: Colors.indigo[900],
         ),
-        body: Text('Hola mundo'),
+        body: Center(
+          child: Column(
+            children: [
+              Text(
+                'Cantidad de veces que se hizo clic',
+                style: TextStyle(fontSize: 40),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Cantidad de veces que se hizo clic',
+                style: TextStyle(fontSize: 40),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Cantidad de veces que se hizo clic',
+                style: TextStyle(fontSize: 40),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Cantidad de veces que se hizo clic',
+                style: TextStyle(fontSize: 40),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+
+        //? floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.indigo,
+          child: Icon(Icons.plus_one, color: Colors.white),
+          onPressed: () {
+            print('Hizo clic');
+          },
+        ),
       ),
     );
   }
