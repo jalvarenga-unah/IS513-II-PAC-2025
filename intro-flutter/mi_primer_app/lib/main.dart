@@ -26,27 +26,17 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                'Cantidad de veces que se hizo clic',
+                'Cantidad de veces que hizo clic',
                 style: TextStyle(fontSize: 40),
                 textAlign: TextAlign.center,
               ),
-              Text(
-                'Cantidad de veces que se hizo clic',
-                style: TextStyle(fontSize: 40),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                'Cantidad de veces que se hizo clic',
-                style: TextStyle(fontSize: 40),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                'Cantidad de veces que se hizo clic',
-                style: TextStyle(fontSize: 40),
-                textAlign: TextAlign.center,
-              ),
+
+              Text('1', style: TextStyle(fontSize: 30)),
             ],
           ),
         ),
