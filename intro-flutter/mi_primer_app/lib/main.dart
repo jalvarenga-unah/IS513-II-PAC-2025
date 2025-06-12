@@ -1,10 +1,22 @@
+import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  int contador = 1;
+  int contador2 = 0;
+
   @override
   Widget build(BuildContext context) {
     //retornar el Widget "Padre"
@@ -14,7 +26,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           // centerTitle: false,
           title: Text(
-            'Menu',
+            'Mi primer App',
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 30.0,
@@ -32,24 +44,55 @@ class MyApp extends StatelessWidget {
             children: [
               Text(
                 'Cantidad de veces que hizo clic',
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(fontSize: (contador * 1.0)),
                 textAlign: TextAlign.center,
               ),
 
-              Text('1', style: TextStyle(fontSize: 30)),
+              Text('$contador', style: TextStyle(fontSize: 30)),
+              Text('$contador2', style: TextStyle(fontSize: 30)),
             ],
           ),
         ),
 
         //? floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.indigo,
-          child: Icon(Icons.plus_one, color: Colors.white),
-          onPressed: () {
-            print('Hizo clic');
-          },
+        floatingActionButton: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FloatingActionButton(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                //hago algo mas
+                restar();
+              },
+              child: Icon(Icons.repeat_one_outlined, color: Colors.white),
+            ),
+            SizedBox(width: 16),
+            FloatingActionButton(
+              backgroundColor: Colors.indigo,
+              onPressed: sumar,
+              child: Icon(Icons.plus_one, color: Colors.white),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void sumar() {
+    // notifica al Widget que el estado cambió y se debe
+    // reconstruir la interfaz de usuario
+    setState(() {});
+    contador++;
+
+    if (contador % 2 == 0) {
+      contador2++;
+    }
+  }
+
+  void restar() {
+    // notifica al Widget que el estado cambió y se debe
+    // reconstruir la interfaz de usuario
+    setState(() {});
+    contador--;
   }
 }
