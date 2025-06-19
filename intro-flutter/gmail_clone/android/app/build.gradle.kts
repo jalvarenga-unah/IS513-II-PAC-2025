@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "hn.edu.unah.mi_primer_app"
+    namespace = "com.example.gmail_clone"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,13 +21,13 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "hn.edu.unah.mi_primer_app"
+        applicationId = "com.example.gmail_clone"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     buildTypes {

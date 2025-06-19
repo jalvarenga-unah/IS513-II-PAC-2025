@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    sumar; // no está ejecutando, solo está llamdo a la referencia de la función
+
     return Scaffold(
       appBar: AppBar(
         // centerTitle: false,
@@ -66,15 +68,23 @@ class _HomePageState extends State<HomePage> {
           FloatingActionButton(
             backgroundColor: Colors.red,
             onPressed: () {
-              //hago algo mas
+              // notifica al Widget que el estado cambió y se debe
+              // reconstruir la interfaz de usuario
+              setState(() {});
+
               restar();
             },
             child: Icon(Icons.repeat_one_outlined, color: Colors.white),
           ),
+
           const SizedBox(width: 16),
           FloatingActionButton(
             backgroundColor: Colors.indigo,
-            onPressed: sumar,
+            onPressed: () {
+              sumar();
+              // notificar al estado que se debe reconstruir
+              setState(() {});
+            },
             child: Icon(Icons.plus_one, color: Colors.white),
           ),
         ],
@@ -83,9 +93,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void sumar() {
-    // notifica al Widget que el estado cambió y se debe
-    // reconstruir la interfaz de usuario
-    setState(() {});
     contador++;
 
     if (contador % 2 == 0) {
@@ -94,9 +101,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void restar() {
-    // notifica al Widget que el estado cambió y se debe
-    // reconstruir la interfaz de usuario
-    setState(() {});
-    contador--;
+    if (contador == 0) return;
+
+    contador = contador - 1;
   }
 }
