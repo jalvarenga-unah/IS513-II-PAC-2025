@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gmail_clone/src/widgets/header_menu.dart';
+import 'package:gmail_clone/src/widgets/item_email.dart';
 import 'package:gmail_clone/src/widgets/item_menu_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,29 +10,50 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Gmail')),
+      // endDrawer: Drawer(),
       drawer: Drawer(
+        // width: double.infinity,
         child: ListView(
           children: [
+            HeaderMenu(),
+            Divider(),
             ItemMenuBar(
               icon: Icons.message_sharp,
               title: 'Todos los recibidos',
               subtitle: 'bandeja de entrada',
               iconTrailing: Icons.arrow_right_rounded,
+              click: () {
+                // cerrar o cancelar la última navegación
+                Navigator.of(context).pop();
+                // Navigator.pop(context);
+                print('todos los recibidos');
+              },
             ),
 
             Divider(),
-            ItemMenuBar(title: 'Pricipal', icon: Icons.email_outlined),
+            ItemMenuBar(
+              title: 'Pricipal',
+              icon: Icons.email_outlined,
+              click: () {
+                print('principal');
+              },
+            ),
+            ItemMenuBar(
+              title: 'Social',
+              icon: Icons.people_outline,
+              click: () {
+                //TODO: navegar a otra pantalla
+                print('social');
+              },
+            ),
+            ItemMenuBar(
+              title: 'Notificaciones',
+              icon: Icons.notifications_outlined,
+              click: () {
+                print('Notificaciones');
+              },
+            ),
 
-            ListTile(
-              leading: Icon(Icons.people_outline),
-              title: Text('Social'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications_outlined),
-              title: Text('Notificaciones'),
-              onTap: () {},
-            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
@@ -42,15 +65,17 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.star_border_outlined),
-              title: Text('Destacados'),
-              onTap: () {},
+            ItemMenuBar(
+              title: 'Destacados',
+              icon: Icons.star_border_outlined,
+              click: () {
+                print('Destacados');
+              },
             ),
           ],
         ),
       ),
-      body: Center(child: Text('Los correos de entrada')),
+      body: ItemEmail(),
     );
   }
 }
