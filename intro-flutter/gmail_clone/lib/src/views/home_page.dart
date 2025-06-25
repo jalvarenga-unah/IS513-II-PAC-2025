@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: ItemEmail(),
+      body: ListView(children: [ItemEmail()]),
     );
   }
 }
