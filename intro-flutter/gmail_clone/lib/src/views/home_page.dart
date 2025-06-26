@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gmail_clone/data/emails_income.dart';
 import 'package:gmail_clone/src/widgets/header_menu.dart';
 import 'package:gmail_clone/src/widgets/item_email.dart';
 import 'package:gmail_clone/src/widgets/item_menu_bar.dart';
@@ -75,7 +76,17 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: ListView(children: [ItemEmail()]),
+      body: ListView.builder(
+        itemCount: emailIncome.length,
+        itemBuilder: (BuildContext contex, int index) {
+          return ItemEmail(
+            user: emailIncome[index]['user'],
+            subject: emailIncome[index]['subject'],
+            body: emailIncome[index]['body'],
+            time: emailIncome[index]['time'],
+          );
+        },
+      ),
     );
   }
 }
