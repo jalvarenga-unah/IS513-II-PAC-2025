@@ -19,6 +19,10 @@ class ItemEmail extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final oritenation = MediaQuery.of(context).orientation;
 
+    print(MediaQuery.of(context).size);
+    print(MediaQuery.of(context).orientation);
+    print(MediaQuery.of(context).platformBrightness);
+
     return InkWell(
       splashColor: Colors.red[50],
       onTap: () {

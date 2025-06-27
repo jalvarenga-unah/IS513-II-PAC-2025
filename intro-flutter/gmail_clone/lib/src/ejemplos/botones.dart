@@ -5,17 +5,16 @@ import 'package:gmail_clone/src/widgets/item_email.dart';
 import 'package:gmail_clone/src/widgets/side_menu.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // es el PageView contenido en una variable
   final pageController = PageController();
 
-  int opcion = 0;
+  int currenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,43 +22,38 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text('Gmail')),
       // endDrawer: Drawer(),
       drawer: SideMenu(),
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        // scrollDirection: Axis.vertical,
-        controller: pageController,
-        onPageChanged: (index) {
-          setState(() {
-            opcion = index;
-          });
-          print('pageView: $index');
-        },
-        children: [
-          ListView.builder(
-            itemCount: emailIncome.length,
-            itemBuilder: (BuildContext contex, int index) {
-              return ItemEmail(
-                user: emailIncome[index]['user'],
-                subject: emailIncome[index]['subject'],
-                body: emailIncome[index]['body'],
-                time: emailIncome[index]['time'],
-              );
-            },
-          ),
-
-          Container(color: Colors.red),
-
-          Container(color: Colors.blue),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[700],
+              ),
+              child: Text(
+                'Configuración',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[700],
+              ),
+              child: Text(
+                'Ir al perfil',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: opcion,
+        currentIndex: currenIndex,
         onTap: (index) {
-          // indica al estado, que se cambió la opción del menú
           setState(() {});
-          opcion = index;
-
-          //? Se le indica al PageView que se cambió la página
+          currenIndex = index;
           // pageController.jumpToPage(index);
           pageController.animateToPage(
             index,
@@ -77,6 +71,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  const MyButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.green[700]),
+      child: Text('Ir al perfil', style: TextStyle(color: Colors.white)),
     );
   }
 }

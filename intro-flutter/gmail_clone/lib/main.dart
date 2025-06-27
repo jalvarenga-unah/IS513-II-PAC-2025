@@ -6,10 +6,10 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   //bloquear la orientación del dispositivo
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
 
   runApp(const MyApp());
 }

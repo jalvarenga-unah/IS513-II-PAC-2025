@@ -23,7 +23,7 @@ class ItemMenuBar extends StatelessWidget {
       leading: Icon(icon),
       trailing: Icon(iconTrailing),
       subtitle: subtitle != null ? Text(subtitle!) : null,
-      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text(title, style: TextStyle(fontWeight: FontWeight.w400)),
       onTap: click,
     );
   }
