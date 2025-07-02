@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gmail_clone/data/emails_income.dart';
-
-import 'package:gmail_clone/src/widgets/item_email.dart';
+import 'package:gmail_clone/src/views/fragments/chat_page.dart';
+import 'package:gmail_clone/src/views/fragments/email_list_page.dart';
+import 'package:gmail_clone/src/views/fragments/meet_page.dart';
 import 'package:gmail_clone/src/widgets/side_menu.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -33,23 +33,7 @@ class _HomePageState extends State<HomePage> {
           });
           print('pageView: $index');
         },
-        children: [
-          ListView.builder(
-            itemCount: emailIncome.length,
-            itemBuilder: (BuildContext contex, int index) {
-              return ItemEmail(
-                user: emailIncome[index]['user'],
-                subject: emailIncome[index]['subject'],
-                body: emailIncome[index]['body'],
-                time: emailIncome[index]['time'],
-              );
-            },
-          ),
-
-          Container(color: Colors.red),
-
-          Container(color: Colors.blue),
-        ],
+        children: [EmailListPage(), ChatPage(), MeetPage()],
       ),
 
       bottomNavigationBar: BottomNavigationBar(

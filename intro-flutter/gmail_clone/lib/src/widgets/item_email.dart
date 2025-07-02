@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ItemEmail extends StatelessWidget {
   const ItemEmail({
@@ -27,6 +28,10 @@ class ItemEmail extends StatelessWidget {
       splashColor: Colors.red[50],
       onTap: () {
         // TODO: navegar a la pantalla del detalle del correo
+        context.goNamed('perfil');
+
+        //TODO: investigar cuando viene de una ruta que no es hijo
+        context.pop(); // cierra la ultima pagina en el stack de navegación
       },
       child: Dismissible(
         // confirmDismiss: (direction) => Future.value(false),
