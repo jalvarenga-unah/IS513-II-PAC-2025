@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final userController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 50),
 
               TextField(
+                controller: userController,
                 // maxLength: 3,
                 // maxLines: 4,
                 // obscureText: true,
@@ -57,6 +61,7 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
@@ -76,6 +81,31 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
+              // Divider(color: Colors.red),
+              SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(child: Divider(color: Colors.blueGrey)),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text('o'),
+                  ),
+                  Expanded(child: Divider(color: Colors.blueGrey)),
+                ],
+              ),
+              Center(
+                child: Card(
+                  color: Colors.white,
+                  elevation: 4,
+                  child: IconButton(
+                    iconSize: 40,
+                    onPressed: () {},
+                    icon: Icon(Icons.login),
+                  ),
+                ),
+              ),
+
               Spacer(),
               SizedBox(
                 width: double.infinity,
@@ -92,11 +122,55 @@ class LoginPage extends StatelessWidget {
 
                     // context.push('/home');
 
-                    context.goNamed('home');
+                    // context.goNamed('home');
                     // context.replaceNamed('home');
 
                     //? Reemplaza la ruta actual por la indicada
                     // context.replace('/home');
+
+                    if (userController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Oops!'),
+                            content: Text(
+                              'El usuario y contraseña no pueden quedar en blanco',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  // Navigator.of(context).pop();
+                                  context.pop();
+                                },
+                                child: Text('Entiendo'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
+                      return;
+                    }
+
+                    if (!userController.text.contains('@')) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red,
+                          action: SnackBarAction(
+                            label: 'Cerrar',
+                            onPressed: () {},
+                          ),
+                          content: Text('El correo no es válido'),
+                        ),
+                      );
+                      return;
+                    }
+
+                    print(userController.text);
+                    print(passwordController.text);
+                    context.push('/home');
                   },
                   child: const Text('Iniciar Sesión'),
                 ),
