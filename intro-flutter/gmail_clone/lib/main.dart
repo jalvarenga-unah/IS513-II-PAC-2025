@@ -29,8 +29,17 @@ class MyApp extends StatelessWidget {
         routes: [
           GoRoute(
             name: 'home',
-            path: '/home',
-            builder: (context, state) => HomePage(),
+            path: '/home/:user',
+            builder: (context, state) {
+              print(state.pathParameters);
+
+              String user = state.pathParameters['user']!;
+              // bool esMayor = state.extra! as bool;
+
+              // final extra = state.extra as Map;
+
+              return HomePage(user: user);
+            },
             //rutas hijas de "/home"
             routes: [
               GoRoute(

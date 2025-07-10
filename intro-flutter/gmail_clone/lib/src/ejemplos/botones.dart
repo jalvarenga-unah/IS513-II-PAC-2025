@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gmail_clone/data/emails_income.dart';
-
-import 'package:gmail_clone/src/widgets/item_email.dart';
 import 'package:gmail_clone/src/widgets/side_menu.dart';
 
 class HomePage extends StatefulWidget {

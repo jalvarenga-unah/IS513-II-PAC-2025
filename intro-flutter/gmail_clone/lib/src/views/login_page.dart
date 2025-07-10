@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final userController = TextEditingController();
-  final passwordController = TextEditingController();
+  final userController = TextEditingController(text: 'test@test');
+  final passwordController = TextEditingController(text: '1234');
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,12 @@ class LoginPage extends StatelessWidget {
 
                     print(userController.text);
                     print(passwordController.text);
-                    context.push('/home');
+                    // context.push('/home/${userController.text}');
+                    context.goNamed(
+                      'home',
+                      // extra: {'user': userController.text},
+                      pathParameters: {'user': userController.text},
+                    );
                   },
                   child: const Text('Iniciar Sesión'),
                 ),

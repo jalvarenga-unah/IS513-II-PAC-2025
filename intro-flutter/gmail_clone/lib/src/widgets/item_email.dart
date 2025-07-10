@@ -31,7 +31,7 @@ class ItemEmail extends StatelessWidget {
         context.goNamed('perfil');
 
         //TODO: investigar cuando viene de una ruta que no es hijo
-        context.pop(); // cierra la ultima pagina en el stack de navegación
+        // context.pop(); // cierra la ultima pagina en el stack de navegación
       },
       child: Dismissible(
         // confirmDismiss: (direction) => Future.value(false),

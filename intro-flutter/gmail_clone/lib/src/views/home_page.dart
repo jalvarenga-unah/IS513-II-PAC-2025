@@ -5,7 +5,9 @@ import 'package:gmail_clone/src/views/fragments/meet_page.dart';
 import 'package:gmail_clone/src/widgets/side_menu.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.user});
+
+  final String user;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Gmail')),
+      appBar: AppBar(title: Text('Gmail: ${widget.user}')),
       // endDrawer: Drawer(),
       drawer: SideMenu(),
       body: PageView(
