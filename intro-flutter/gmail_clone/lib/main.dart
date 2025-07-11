@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: GoRouter(
         //
-        initialLocation: '/login',
+        initialLocation: '/home/juan',
         routes: [
           GoRoute(
             name: 'home',
@@ -41,15 +41,13 @@ class MyApp extends StatelessWidget {
               return HomePage(user: user);
             },
             //rutas hijas de "/home"
-            routes: [
-              GoRoute(
-                name: 'perfil',
-                path: '/perfil', // /home/perfil
-                builder: (context, state) {
-                  return const PerfilPage();
-                },
-              ),
-            ],
+          ),
+          GoRoute(
+            name: 'perfil',
+            path: '/perfil', // /home/perfil
+            builder: (context, state) {
+              return const PerfilPage();
+            },
           ),
           GoRoute(
             name: 'login',

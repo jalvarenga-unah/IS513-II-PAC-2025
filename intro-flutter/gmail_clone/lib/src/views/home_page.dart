@@ -15,9 +15,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // es el PageView contenido en una variable
-  final pageController = PageController();
+  final pageController = PageController(initialPage: 1);
 
-  int opcion = 0;
+  int opcion = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Mensajes'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chats'),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Productos'),
           BottomNavigationBarItem(
             icon: Icon(Icons.videocam_rounded),
             label: 'Reunirse',

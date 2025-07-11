@@ -28,7 +28,8 @@ class ItemEmail extends StatelessWidget {
       splashColor: Colors.red[50],
       onTap: () {
         // TODO: navegar a la pantalla del detalle del correo
-        context.goNamed('perfil');
+        // context.goNamed('perfil');
+        context.pushNamed('perfil');
 
         //TODO: investigar cuando viene de una ruta que no es hijo
         // context.pop(); // cierra la ultima pagina en el stack de navegación
