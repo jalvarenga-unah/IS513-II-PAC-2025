@@ -25,6 +25,9 @@ class ItemMenuBar extends StatelessWidget {
       subtitle: subtitle != null ? Text(subtitle!) : null,
       title: Text(title, style: TextStyle(fontWeight: FontWeight.w400)),
       onTap: click,
+      onLongPress: () {
+        // eliminar
+      },
     );
   }
 }

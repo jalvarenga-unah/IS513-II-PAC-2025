@@ -119,7 +119,6 @@ class LoginPage extends StatelessWidget {
                     //? Navega a la ruta indicada, apliando
                     //? en un stack de navegación
                     // context.go('/home');
-
                     // context.push('/home');
 
                     // context.goNamed('home');
