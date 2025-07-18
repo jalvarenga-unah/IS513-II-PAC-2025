@@ -13,7 +13,7 @@ class Producto {
   final double price;
   final String description;
   final String category;
-  final String image;
+  final String? image;
   final Rating rating;
 
   Producto({

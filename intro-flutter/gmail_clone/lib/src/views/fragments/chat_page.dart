@@ -10,7 +10,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: productoProvider.getProductos(),
+      future: productoProvider.getProductosByCategory("men's clothing"),
       builder: (BuildContext context, AsyncSnapshot<List<Producto>> snapshot) {
         // preguntar el estado del Future
         //dibujar un icono de carga
@@ -38,6 +38,10 @@ class ChatPage extends StatelessWidget {
             final producto = listaProductos[index];
 
             return ListTile(
+              leading:
+                  producto.image == null
+                      ? CircleAvatar(child: Text(producto.title[0]))
+                      : Image.network(producto.image!),
               title: Text(producto.title),
               subtitle: Text(producto.description),
               onTap: () {
