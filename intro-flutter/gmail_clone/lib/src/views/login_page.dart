@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
@@ -169,6 +170,11 @@ class LoginPage extends StatelessWidget {
 
                     print(userController.text);
                     print(passwordController.text);
+
+                    // registrar el login del usuario
+                    GetStorage().write('isLoggedIn', true);
+                    GetStorage().write('user', userController.text);
+
                     // context.push('/home/${userController.text}');
                     context.goNamed(
                       'home',
