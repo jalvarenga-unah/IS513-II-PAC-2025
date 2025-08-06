@@ -8,8 +8,8 @@ class EmailListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('messages').snapshots(),
+    return FutureBuilder(
+      future: FirebaseFirestore.instance.collection('messages').get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());

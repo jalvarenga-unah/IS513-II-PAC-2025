@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gmail_clone/firebase_options.dart';
 import 'package:gmail_clone/src/views/home_page.dart';
 import 'package:gmail_clone/src/views/login_page.dart';
+import 'package:gmail_clone/src/views/new_message_page.dart';
 import 'package:gmail_clone/src/views/perfil_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -78,6 +79,13 @@ class MyApp extends StatelessWidget {
             name: 'login',
             path: '/login',
             builder: (context, state) => LoginPage(),
+          ),
+          GoRoute(
+            name: 'new-message',
+            path: '/new-message', // /home/perfil
+            builder: (context, state) {
+              return NewMessagePage();
+            },
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:gmail_clone/src/views/fragments/chat_page.dart';
 import 'package:gmail_clone/src/views/fragments/email_list_page.dart';
 import 'package:gmail_clone/src/views/fragments/meet_page.dart';
 import 'package:gmail_clone/src/widgets/side_menu.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.user});
@@ -15,9 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // es el PageView contenido en una variable
-  final pageController = PageController(initialPage: 1);
+  final pageController = PageController(initialPage: 0);
 
-  int opcion = 1;
+  int opcion = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,13 @@ class _HomePageState extends State<HomePage> {
         },
         children: [EmailListPage(), ChatPage(), MeetPage()],
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // redirigir a la página de nuevo mensaje
+          context.pushNamed('new-message');
+        },
+        child: Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: opcion,
         onTap: (index) {
