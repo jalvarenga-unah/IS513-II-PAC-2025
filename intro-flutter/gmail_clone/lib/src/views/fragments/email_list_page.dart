@@ -9,7 +9,13 @@ class EmailListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('messages').snapshots(),
+      stream:
+          FirebaseFirestore.instance
+              .collection('messages')
+              // .where('archived', isEqualTo: false)
+              .orderBy('user', descending: true)
+              .limit(2)
+              .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -29,6 +35,7 @@ class EmailListPage extends StatelessWidget {
           itemCount: messages.length,
           itemBuilder: (BuildContext contex, int index) {
             return ItemEmail(
+              id: messages[index].id,
               user: messages[index]['user'],
               subject: messages[index]['subject'],
               body: messages[index]['body'],

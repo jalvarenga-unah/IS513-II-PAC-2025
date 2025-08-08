@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,9 +9,11 @@ class ItemEmail extends StatelessWidget {
     required this.subject,
     required this.body,
     required this.time,
+    required this.id,
   });
 
   final String user;
+  final String id;
   final String subject;
   final String body;
   final String time;
@@ -36,7 +39,7 @@ class ItemEmail extends StatelessWidget {
       },
       child: Dismissible(
         // confirmDismiss: (direction) => Future.value(false),
-        key: Key(Symbol(user).toString()),
+        key: Key(Symbol(id).toString()),
 
         background: Container(
           color: Colors.blue,
@@ -66,12 +69,58 @@ class ItemEmail extends StatelessWidget {
           ),
         ),
 
-        onDismissed: (direction) {
+        confirmDismiss: (direction) async {
+          bool isDismiss = false;
+
+          final docRef = FirebaseFirestore.instance
+              .collection('messages')
+              .doc(id);
+
           if (direction == DismissDirection.startToEnd) {
-            //TODO: evento para archivar el mensaje
+            docRef.update({'archived': true});
+            // docRef.set({
+            //   'archived': true,
+            //   'user': user,
+            //   'subject': subject,
+            //   'body': body,
+            // });
           } else {
-            //TODO: evento para eliminar un mensaje
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  content: Text(
+                    'Seguro que quieres eliminar el correo deo $user?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        isDismiss = true;
+
+                        await docRef.delete();
+
+                        if (!context.mounted) return;
+                        context.pop(); // cierra el dialogo
+                      },
+                      child: Text(
+                        'Eliminar',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                        isDismiss = false;
+                      },
+                      child: Text('Cancelar'),
+                    ),
+                  ],
+                );
+              },
+            );
           }
+
+          return Future.value(isDismiss);
         },
         child: Container(
           constraints: BoxConstraints(
